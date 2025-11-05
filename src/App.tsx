@@ -3,7 +3,7 @@ import { ButtonMobile } from "@alfalab/core-components/button/mobile";
 import { Typography } from "@alfalab/core-components/typography";
 
 import image1 from "./assets/1.png";
-import setting from "./assets/Настройка.png";
+import setting from "./assets/setting.png";
 import nothing from "./assets/Никаких неловких моментов.png";
 import save from "./assets/Экономьте часы.png";
 import { LS, LSKeys } from "./ls";
