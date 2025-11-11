@@ -9,24 +9,28 @@ import save from "./assets/Экономьте часы.png";
 import { LS, LSKeys } from "./ls";
 import { appSt } from "./style.css";
 import { Gap } from "@alfalab/core-components/gap";
-import { ThxLayout } from "./thx/ThxLayout.tsx";
-import { useState } from "react";
 import { LockOpenLineMIcon } from "@alfalab/icons-glyph/LockOpenLineMIcon";
 
-export const App = () => {
-  const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
+const deepLink =
+  "alfabank://sdui_screen?screenName=InvestmentLongread&fromCurrent=true&shouldUseBottomSafeArea=true&shouldUseBottomSafeArea=true&endpoint=v1/invest-main-screen-view/investment-longread/55160%3flocation=AM_WN_MAIN%26campaignCode=ONB_ME2ME_S1";
 
+const Redirect = () => {
+  window.location.href = deepLink;
+
+  return null;
+};
+
+export const App = () => {
   const submit = () => {
     window.gtag("event", "6719_get_sub", {
       variant_name: "6719_4",
     });
 
     LS.setItem(LSKeys.ShowThx, true);
-    setThx(true);
   };
 
-  if (thxShow) {
-    return <ThxLayout />;
+  if (LS.getItem(LSKeys.ShowThx, false)) {
+    return <Redirect />;
   }
 
   return (
@@ -121,7 +125,7 @@ export const App = () => {
       <Gap size={96} />
 
       <div className={appSt.bottomBtn}>
-        <ButtonMobile block view="primary" onClick={submit}>
+        <ButtonMobile block view="primary" href={deepLink} onClick={submit}>
           Закрепить скил
         </ButtonMobile>
       </div>
